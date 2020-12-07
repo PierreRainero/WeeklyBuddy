@@ -1,0 +1,30 @@
+{
+    "name": "weekly-buddy/backend",
+    "description": "Open-source and sandbox project to build a weekly food menu",
+    "authors": [
+        {
+            "name": "Pierre RAINERO",
+            "email": "pierre.rainero@hotmail.fr",
+            "homepage": "https://pierre-rainero.fr/",
+            "role": "Maintainer"
+        }
+    ],
+    "license": "gpl-3.0",
+    "require": {
+        "doctrine/orm": "2.7.4",
+        "mikecao/flight": "^1.3",
+        "level-2/dice": "^4.0",
+        "rbdwllr/reallysimplejwt": "^2.1",
+        "phpmailer/phpmailer": "^6.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "WeeklyBuddy\\": "src/",
+            "WeeklyBuddy\\Controllers\\": "src/controllers/",
+            "WeeklyBuddy\\Exceptions\\": "src/exceptions/",
+            "WeeklyBuddy\\Services\\": "src/services/",
+            "WeeklyBuddy\\Services\\Util\\": "src/services/util/",
+            "WeeklyBuddy\\Models\\": "src/models/"
+        }
+    }
+}
