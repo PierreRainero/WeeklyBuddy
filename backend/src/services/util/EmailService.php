@@ -24,7 +24,7 @@ class EmailService {
     }
     
     /**
-     * Check if a given email is considered as valid
+     * Checks if a given email is considered as valid
      * @param string $email The email to check
      * @return bool "true" if the email pass the validation, "false" otherwise
      */
@@ -34,13 +34,13 @@ class EmailService {
     }
 
     /**
-     * Send an activation email for an user
+     * Sends an activation email for an user
      * @param string $email The email to use as recipient
      * @param string $token The activation token to use
      * @param string $keyLang The language key to use ("fr", "en")
      * @return void
      */
-    public function sendActivationEmail(string $email, string $token, string $keyLang) {
+    public function sendActivationEmail(string $email, string $token, string $keyLang): void {
         $mail = new PHPMailer(true);
         try {
             $mail->isSMTP();
@@ -63,7 +63,7 @@ class EmailService {
     }
 
     /**
-     * Generate the activation email title according to given language
+     * Generates the activation email title according to given language
      * @param string $keyLang The language key to use ("fr", "en")
      * @return string Email subject
      */
@@ -76,7 +76,7 @@ class EmailService {
     }
 
     /**
-     * Generate the activation email body according to given language
+     * Generates the activation email body according to given language
      * @param string $token The activation token to use
      * @param string $keyLang The language key to use ("fr", "en")
      * @return string Email body

@@ -5,13 +5,13 @@ namespace WeeklyBuddy\Exceptions;
 use Exception;
 
 /**
- * Class to throw when there is trouble is email sending
+ * Class to throw when there is trouble with email sending
  */
 class EmailException extends Exception {
     /**
      * Class contructor
      * @param string $message
-     * @param integer $code
+     * @param int $code
      * @param Exception $previous
      */
     public function __construct(string $message, int $code = 0, Exception $previous = null) {

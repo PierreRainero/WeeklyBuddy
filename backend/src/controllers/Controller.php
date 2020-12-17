@@ -2,6 +2,8 @@
 
 namespace WeeklyBuddy\Controllers;
 
+use Flight;
+use flight\net\Response;
 use WeeklyBuddy\Services\Util\JWTService;
 
 /**
@@ -31,5 +33,18 @@ class Controller {
      */
     public function __construct(JWTService $jwtService) {
         $this->jwtService = $jwtService;
+    }
+
+    /**
+     * Setups the response object with json body
+     * @param array $body Body as array to convert into json object
+     * @param int $status HTTP status to set for the response
+     * @return Response
+     */
+    protected function jsonResponse(array $body, int $status = 200): Response {
+        return Flight::response()
+            ->status($status)
+            ->header('Content-Type', 'application/json; charset=utf-8')
+            ->write(json_encode($body));
     }
 }

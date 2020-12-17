@@ -63,6 +63,10 @@ To start you need to follow several steps :
 
 5. Setup you database with all scripts inside the "sql" folder (pass them in alphabetical order).
 
+## Launching tests
+
+This project uses [PHPUnit](https://phpunit.de/index.html) to test the backend. In order to launch the tests suites use the following command : `./vendor/bin/phpunit --testdox tests`
+
 ## FAQ
 
 ### The requests routing isn't working

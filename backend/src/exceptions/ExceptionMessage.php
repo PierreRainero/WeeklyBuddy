@@ -12,7 +12,7 @@ class ExceptionMessage {
     /**
      * Class contructor
      * @param string $uniqueCode
-     * @param integer $message
+     * @param int $message
      */
     public function __construct(string $uniqueCode, string $message) {
         $this->uniqueCode = $uniqueCode;
@@ -20,7 +20,7 @@ class ExceptionMessage {
     }
 
     /**
-     * Transform object to array in format for communications outside of the app 
+     * Transforms object to array in format for communications outside of the app 
      * @return array
      */
     public function toDTO(): array {

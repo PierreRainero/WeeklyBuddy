@@ -24,7 +24,12 @@
             "WeeklyBuddy\\Exceptions\\": "src/exceptions/",
             "WeeklyBuddy\\Services\\": "src/services/",
             "WeeklyBuddy\\Services\\Util\\": "src/services/util/",
-            "WeeklyBuddy\\Models\\": "src/models/"
+            "WeeklyBuddy\\Models\\": "src/models/",
+            "WeeklyBuddy\\Tests\\" : "tests/",
+            "WeeklyBuddy\\Tests\\Utils\\": "tests/utils/"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "9"
     }
 }

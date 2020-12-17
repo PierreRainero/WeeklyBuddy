@@ -7,11 +7,12 @@ use Flight;
 /**
  * Init the application
  */
-require_once './src/configs/init.php';
+require_once(join(DIRECTORY_SEPARATOR, array(__DIR__, 'src', 'configs', 'init.php')));
+
 /**
  * Create routes mapping
  */
-require_once './src/routing.php';
+require_once(join(DIRECTORY_SEPARATOR, array(__DIR__, 'src', 'routing.php')));
 
 /**
  * Launch routing framework

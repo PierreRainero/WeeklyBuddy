@@ -38,7 +38,7 @@ $dice = $dice->addRules([
                 }]
             ]
     ],
-    // Share frequently used services
+    // Shares frequently used services
     'WeeklyBuddy\Services\Util\EmailService' => ['shared' => true],
     'WeeklyBuddy\Services\Util\JWTService' => ['shared' => true]
 ]);

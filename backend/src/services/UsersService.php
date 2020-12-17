@@ -2,7 +2,7 @@
 
 namespace WeeklyBuddy\Services;
 
-use Doctrine\ORM\{EntityManagerInterface, NoResultException};
+use Doctrine\ORM\{EntityManagerInterface, NoResultException, NonUniqueResultException};
 use WeeklyBuddy\Exceptions\{AlreadyExistException, InvalidParameterException};
 use WeeklyBuddy\Models\User;
 use WeeklyBuddy\Services\EntityService;
@@ -35,12 +35,13 @@ class UsersService extends EntityService {
     }
     
     /**
-     * Add a new user in the app if his email is not already taken
+     * Adds a new user in the app if his email is not already taken
      * @param string $email Email for the new user
      * @param string $password Password for the new user
      * @param string $lang Language for the new user
      * @return User Persisted user
      * @throws AlreadyExistException
+     * @throws NonUniqueResultException
      * @throws InvalidParameterException
      */
 	public function add(string $email, string $password, string $lang): User {
@@ -52,7 +53,7 @@ class UsersService extends EntityService {
                 throw new InvalidParameterException('Email is invalid.');
             }
             $user = new User($email, password_hash($password, PASSWORD_BCRYPT));
-            if(strlen($lang)===2) {
+            if(strlen($lang) === 2) {
                 $user->setLang($lang);
             }
             $this->entityManager->persist($user);
@@ -62,7 +63,7 @@ class UsersService extends EntityService {
     }
 
     /**
-     * Check if a given password is correctly associated to a given user
+     * Checks if a given password is correctly associated to a given user
      * @param User $user The user to check
      * @param string $password The password to check
      * @return bool "true" if passwords matched, "false" otherwise
@@ -72,9 +73,11 @@ class UsersService extends EntityService {
     }
     
     /**
-     * Search an user from his email
+     * Searches an user from his email
      * @param string $email Email used to search
      * @return User The found user
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      */
     public function findByEmail(string $email): User {
         $queryBuilder = $this->entityManager->createQueryBuilder();
@@ -88,27 +91,27 @@ class UsersService extends EntityService {
     }
 
     /**
-     * Search an user from his unique identifier
-     * @param integer $id The user identifier to use
+     * Searches an user from his unique identifier
+     * @param int $id The user identifier to use
      * @return User  The found user
      * @throws NoResultException
      */
     public function findById(int $id): User {
         $foundUser = $this->entityManager->find($this->entityClassName, $id);
         if($foundUser === NULL){
-            throw new NoResultException("Non existing user with id : $id");
+            throw new NoResultException();
         }
 
         return $foundUser;
     }
 
     /**
-     * Activate an user identified by his id
-     * @param integer $id The user identifier to use
+     * Activates an user identified by his id
+     * @param int $id The user identifier to use
      * @return void
      * @throws NoResultException
      */
-    public function activateUser(int $id) {
+    public function activateUser(int $id): void {
         $foundUser = $this->findById($id);
         $synchronizedUser = $this->entityManager->merge($foundUser);
         $synchronizedUser->setActive(true);

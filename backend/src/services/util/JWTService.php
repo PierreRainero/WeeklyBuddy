@@ -30,7 +30,7 @@ class JWTService {
     }
 
     /**
-     * Create a valid token for a given user
+     * Creates a valid token for a given user
      * @param User $user User to user
      * @return string crypted token
      */
@@ -46,7 +46,7 @@ class JWTService {
     }
 
     /**
-     * Check if a given token is valid
+     * Checks if a given token is valid
      * @param string $token Token to check
      * @return bool "true" if the token is trustable and not expired, "false" otherwise
      */
@@ -65,7 +65,7 @@ class JWTService {
     }
 
     /**
-     *Extract an user (DTO format) from a token
+     * Extracts an user (DTO format) from a token
      * @param string $token Token to use
      * @return array The user under array-values format
      */

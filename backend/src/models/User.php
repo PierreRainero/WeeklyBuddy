@@ -76,7 +76,7 @@ class User {
      * @param string $email The new user mail to use
      * @return void
      */
-    public function setEmail(string $email) {
+    public function setEmail(string $email): void {
         $this->email = $email;
     }
 
@@ -93,7 +93,7 @@ class User {
      * @param string $password The new user password to use
      * @return void
      */
-    public function setPassword(string $password) {
+    public function setPassword(string $password): void {
         $this->password = $password;
     }
 
@@ -110,7 +110,7 @@ class User {
      * @param bool $active The new user status
      * @return void
      */
-    public function setActive(bool $active) {
+    public function setActive(bool $active): void {
         $this->active = $active;
     }
 
@@ -127,18 +127,19 @@ class User {
      * @param string $lang The new user language to use
      * @return void
      */
-    public function setLang(string $lang) {
+    public function setLang(string $lang): void {
         $this->lang = $lang;
     }
 
     /**
-     * Transform object to array in format for communications outside of the app 
+     * Transforms object to array in format for communications outside of the app 
      * @return array
      */
     public function toDTO(): array {
         return [
             'id'    => $this->id,
-            'email' => $this->email
+            'email' => $this->email,
+            'lang'  => $this->lang
         ];
     }
 }

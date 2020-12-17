@@ -11,7 +11,7 @@ class InvalidParameterException extends Exception {
     /**
      * Class contructor
      * @param string $message
-     * @param integer $code
+     * @param int $code
      * @param Exception $previous
      */
     public function __construct(string $message, int $code = 0, Exception $previous = null) {
