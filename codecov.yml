@@ -1,0 +1,3 @@
+ignore:
+  - 'backend/src/routing.php'
+  - 'backend/src/configs/init.php'

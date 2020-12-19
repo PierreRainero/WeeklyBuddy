@@ -1,6 +1,6 @@
 # WeeklyBuddy BACKEND
 
-[![Backend Status](https://github.com/PierreRainero/WeeklyBuddy/workflows/Backend_pipeline/badge.svg)](https://github.com/PierreRainero/WeeklyBuddy/actions?query=workflow%3ABackend_pipeline)  
+[![Backend Status](https://github.com/PierreRainero/WeeklyBuddy/workflows/Backend_pipeline/badge.svg)](https://github.com/PierreRainero/WeeklyBuddy/actions?query=workflow%3ABackend_pipeline) [![codecov](https://codecov.io/gh/PierreRainero/WeeklyBuddy/branch/master/graph/badge.svg?token=XR93IT622L)](https://codecov.io/gh/PierreRainero/WeeklyBuddy)  
 
 ## Getting started
 
@@ -68,7 +68,7 @@ To start you need to follow several steps :
 ## Launching tests
 
 This project uses [PHPUnit](https://phpunit.de/index.html) to test the backend. In order to launch the tests suites use the following command :  
-`./vendor/bin/phpunit --testdox tests`
+`./vendor/bin/phpunit --testdox -c ./tests/phpunit.xml`
 
 ## FAQ
 

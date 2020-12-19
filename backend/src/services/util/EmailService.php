@@ -44,6 +44,7 @@ class EmailService {
      * @param string $token The activation token to use
      * @param string $keyLang The language key to use ("fr", "en")
      * @return void
+     * @throws EmailException
      */
     public function sendActivationEmail(string $email, string $token, string $keyLang): void {
         if($this->emailsParams === null) {

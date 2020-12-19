@@ -1,2 +1,5 @@
 # Dependencies
 /vendor
+
+# Coverage
+/coverage
