@@ -1,0 +1,4 @@
+path: ../src
+jobs: 2
+extensions:
+  - php

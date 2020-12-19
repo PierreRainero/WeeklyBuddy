@@ -65,10 +65,15 @@ To start you need to follow several steps :
 
 5. Setup you database with all scripts inside the "sql" folder (pass them in alphabetical order).
 
+## Launching linter
+
+This project uses [phplint](https://github.com/overtrue/phplint) to ensure the syntax of the backend. In order to launch the linter use the following command :  
+`./vendor/bin/phplint -c ./conf/phplint.yml`
+
 ## Launching tests
 
 This project uses [PHPUnit](https://phpunit.de/index.html) to test the backend. In order to launch the tests suites use the following command :  
-`./vendor/bin/phpunit --testdox -c ./tests/phpunit.xml`
+`./vendor/bin/phpunit --testdox -c ./conf/phpunit.xml`  
 
 ## FAQ
 

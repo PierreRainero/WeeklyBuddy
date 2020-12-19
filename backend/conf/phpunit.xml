@@ -7,7 +7,7 @@
          failOnRisky="true">
     <testsuites>
         <testsuite name="WeeklyBuddy tests suite">
-            <directory>./</directory>
+            <directory>../tests</directory>
         </testsuite>
     </testsuites>
 

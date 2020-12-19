@@ -3,6 +3,24 @@ name: Backend_pipeline
 on: [push]
 
 jobs:
+  lint:
+    name: Check code rules (lint)
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version: ["7.4"]
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Install PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-version }}
+    - name: Install dependencies
+      run: (cd backend && composer install --no-interaction --no-progress --ansi)
+    - name : Check with linter
+      run : (cd backend && vendor/bin/phplint -c conf/phplint.yml src)
+
   test:
     name: Check code behaviors (test)
     runs-on: ubuntu-latest
@@ -21,7 +39,7 @@ jobs:
     - name: Create auto-loader
       run : (cd backend && composer dump-autoload)
     - name: Unit tests
-      run: backend/vendor/bin/phpunit --testdox --coverage-clover=backend/coverage/coverage.xml -c backend/tests/phpunit.xml
+      run: backend/vendor/bin/phpunit --testdox --coverage-clover=backend/coverage/coverage.xml -c backend/conf/phpunit.xml
     - name: Store coverage datas
       uses: actions/upload-artifact@v2
       with:
@@ -32,6 +50,7 @@ jobs:
     name: Upload coverage to Codecov (coverage)
     runs-on: ubuntu-latest
     needs:
+      - lint
       - test
     steps:
       - name: Checkout code
