@@ -3,7 +3,6 @@
 namespace WeeklyBuddy\Controllers;
 
 use Doctrine\ORM\{NonUniqueResultException, NoResultException};
-use Flight;
 use flight\net\Request;
 use flight\net\Response;
 use WeeklyBuddy\Controllers\Controller;

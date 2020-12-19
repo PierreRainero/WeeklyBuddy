@@ -20,7 +20,12 @@ class EmailService {
      * Injected constructor
      */
     public function __construct() {
-        $this->emailsParams = include join(DIRECTORY_SEPARATOR, array(dirname(dirname(dirname(dirname(__DIR__)))), 'env', 'smtp.php'));
+        $smtpConfigFile = join(DIRECTORY_SEPARATOR, array(dirname(dirname(dirname(dirname(__DIR__)))), 'env', 'smtp.php'));
+        if(file_exists($smtpConfigFile)){
+            $this->emailsParams = include $smtpConfigFile;
+        } else {
+            $this->emailsParams = null;
+        }
     }
     
     /**
@@ -41,6 +46,10 @@ class EmailService {
      * @return void
      */
     public function sendActivationEmail(string $email, string $token, string $keyLang): void {
+        if($this->emailsParams === null) {
+            throw new EmailException('SMTP configurations missing.');
+        }
+
         $mail = new PHPMailer(true);
         try {
             $mail->isSMTP();

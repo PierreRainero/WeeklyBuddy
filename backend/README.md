@@ -1,5 +1,7 @@
 # WeeklyBuddy BACKEND
 
+[![Backend Status](https://github.com/PierreRainero/WeeklyBuddy/workflows/Backend_pipeline/badge.svg)](https://github.com/PierreRainero/WeeklyBuddy/actions?query=workflow%3ABackend_pipeline)  
+
 ## Getting started
 
 To use this project [Composer](https://getcomposer.org/) and a recent PHP version are required. As Maven for Java projects, NPM for Node projects,... it's a packages manager providing an easy way to include external libraries.  
@@ -65,7 +67,8 @@ To start you need to follow several steps :
 
 ## Launching tests
 
-This project uses [PHPUnit](https://phpunit.de/index.html) to test the backend. In order to launch the tests suites use the following command : `./vendor/bin/phpunit --testdox tests`
+This project uses [PHPUnit](https://phpunit.de/index.html) to test the backend. In order to launch the tests suites use the following command :  
+`./vendor/bin/phpunit --testdox tests`
 
 ## FAQ
 

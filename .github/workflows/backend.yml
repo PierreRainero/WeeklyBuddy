@@ -1,0 +1,25 @@
+name: Backend_pipeline
+
+on: [push]
+
+jobs:
+  test:
+    name: Check code behaviors (test)
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version: ["7.4"]
+        deps: ["locked"]
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Install PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-version }}
+    - name: Install dependencies
+      run: (cd backend && composer install --no-interaction --no-progress --ansi)
+    - name: Create auto-loader
+      run : (cd backend && composer dump-autoload)
+    - name: Unit tests
+      run: backend/vendor/bin/phpunit --testdox backend/tests
