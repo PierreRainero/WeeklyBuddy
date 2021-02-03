@@ -1,0 +1,42 @@
+/*** Install icons library ***/
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+
+/*** TYPOGRAPHY ***/
+body,
+html {
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+}
+
+.wb-main-title {
+  font-size: 20px;
+}
+
+/*** LAYERS ***/
+body {
+  margin: 0;
+}
+
+/*** CURSORS ***/
+.clickable {
+  cursor: pointer;
+}
+
+/*** OVERRIDE **/
+.el-menu-item [class^="fas"] {
+  margin-right: 5px;
+  width: 24px;
+  text-align: center;
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+.el-button [class*="fas"] + span {
+  margin-left: 5px;
+}
+
+.el-notification__group .el-notification__closeBtn {
+  color: #909399;
+}

@@ -6,7 +6,7 @@ use Doctrine\ORM\{NonUniqueResultException, NoResultException};
 use flight\net\Request;
 use flight\net\Response;
 use WeeklyBuddy\Controllers\Controller;
-use WeeklyBuddy\Exceptions\{AlreadyExistException, ExceptionMessage, EmailException, InvalidParameterException};
+use WeeklyBuddy\Exceptions\{AlreadyExistException, ExceptionMessage, EmailException, InvalidParameterException, ValidationError};
 use WeeklyBuddy\Services\UsersService;
 use WeeklyBuddy\Services\Util\{JWTService, EmailService};
 
@@ -92,10 +92,12 @@ class UsersController extends Controller {
             return $this->jsonResponse(['message' => 'Activation mail sent.'], 200);
         } catch(NonUniqueResultException $e) {
             return $this->jsonResponse((new ExceptionMessage('UC11', $this->generateNonUniqueErrorMessage($email)))->toDTO(), $this->HTTP_CODES['INTERNAL_SERVER_ERROR']);
-        } catch(AlreadyExistException | InvalidParameterException $e) {
-            return $this->jsonResponse((new ExceptionMessage('UC12', $e->getMessage()))->toDTO(), $this->HTTP_CODES['BAD_REQUEST']);
+        } catch(AlreadyExistException $e) {
+            return $this->jsonResponse((new ExceptionMessage('UC13', $e->getMessage(), ['email' => ValidationError::AlreadyExist]))->toDTO(), $this->HTTP_CODES['BAD_REQUEST']);
+        } catch(InvalidParameterException $e) {
+            return $this->jsonResponse((new ExceptionMessage('UC14', $e->getMessage(), ['email' => ValidationError::Invalid]))->toDTO(), $this->HTTP_CODES['BAD_REQUEST']);
         } catch(EmailException $e) {
-            return $this->jsonResponse((new ExceptionMessage('UC13', $e->getMessage()))->toDTO(), $this->HTTP_CODES['INTERNAL_SERVER_ERROR']);
+            return $this->jsonResponse((new ExceptionMessage('UC15', $e->getMessage()))->toDTO(), $this->HTTP_CODES['INTERNAL_SERVER_ERROR']);
         }
     }
 

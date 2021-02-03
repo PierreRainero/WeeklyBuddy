@@ -8,15 +8,18 @@ namespace WeeklyBuddy\Exceptions;
 class ExceptionMessage {
     private $uniqueCode;
     private $message;
+    private $fieldsInError;
 
     /**
      * Class contructor
      * @param string $uniqueCode
      * @param int $message
+     * @param array $fieldsInError
      */
-    public function __construct(string $uniqueCode, string $message) {
+    public function __construct(string $uniqueCode, string $message, array $fieldsInError = []) {
         $this->uniqueCode = $uniqueCode;
         $this->message = $message;
+        $this->fieldsInError = $fieldsInError;
     }
 
     /**
@@ -25,8 +28,9 @@ class ExceptionMessage {
      */
     public function toDTO(): array {
         return [
-            'code'    => $this->uniqueCode,
-            'message' => $this->message
+            'code'          => $this->uniqueCode,
+            'message'       => $this->message,
+            'fieldsInError' => $this->fieldsInError
         ];
     }
 }

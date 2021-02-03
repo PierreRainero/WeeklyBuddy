@@ -109,9 +109,12 @@ class UsersControllerAddTest extends AbstractUsersController {
         $status = ResponseUtil::getStatusCode($response);
         $body = ResponseUtil::getBody($response);
         $message = json_decode($body, true)['message'];
+        $fieldsInError = json_decode($body, true)['fieldsInError'];
         
         $this->assertEquals(400, $status);
         $this->assertEquals('An user with "user@gmail.com" email already exists.', $message);
+        $this->assertArrayHasKey('email',  $fieldsInError);
+        $this->assertEquals('E1', $fieldsInError['email']);
     }
 
     /**
@@ -138,9 +141,12 @@ class UsersControllerAddTest extends AbstractUsersController {
         $status = ResponseUtil::getStatusCode($response);
         $body = ResponseUtil::getBody($response);
         $message = json_decode($body, true)['message'];
+        $fieldsInError = json_decode($body, true)['fieldsInError'];
         
         $this->assertEquals(400, $status);
         $this->assertEquals('Email is invalid.', $message);
+        $this->assertArrayHasKey('email',  $fieldsInError);
+        $this->assertEquals('E0', $fieldsInError['email']);
     }
 
     /**

@@ -1,0 +1,6 @@
+{
+    "@components": "/src/components",
+    "@services": "/src/services",
+    "@views": "/src/views",
+    "~styles": "/src/styles"
+}

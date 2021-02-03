@@ -1,0 +1,17 @@
+/*** COLORS ***/
+@import "./colors.module.scss";
+
+/*** Responsive breakpoint ***/
+$--breakpoint--mobile: 576;
+$--breakpoint--tablet-vertical: 768;
+$--breakpoint--tablet-horizontal: 992;
+$--breakpoint--desktop: 1200;
+
+/*** Retreive chalk theme ***/
+$--font-path: "~element-plus/lib/theme-chalk/fonts";
+@import "~element-plus/packages/theme-chalk/src/index";
+
+:export {
+    tabletVertical: $--breakpoint--tablet-vertical;
+    tabletHorizontal: $--breakpoint--tablet-horizontal;
+}

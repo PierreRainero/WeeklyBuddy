@@ -10,6 +10,7 @@
         }
     ],
     "license": "gpl-3.0",
+    "version": "0.0.1",
     "require": {
         "doctrine/orm": "2.7.4",
         "mikecao/flight": "^1.3",

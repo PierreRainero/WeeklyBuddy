@@ -1,0 +1,14 @@
+/*** COLORS ***/
+$--color-primary: #01c6b2;
+$--color-dark: #28696d;
+$--color-success: #00a73e;
+$--color-warning: #ffcd00;
+$--color-danger: #ff7d01;
+$--color-text-secondary: #fff;
+$--color-background: #fff;
+
+:export {
+    primaryColor: $--color-primary;
+    darkColor: $--color-dark;
+    textSecondaryColor: $--color-text-secondary;
+}

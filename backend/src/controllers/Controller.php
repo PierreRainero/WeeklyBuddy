@@ -11,6 +11,12 @@ use WeeklyBuddy\Services\Util\JWTService;
  */
 class Controller {
     /**
+     * All authorized DNS
+     * @var array
+     */
+    private $dns_allowed= ['https://weeklybuddy.pierre-rainero.fr', 'https://www.weeklybuddy.pierre-rainero.fr', 'http://weeklybuddy.pierre-rainero.fr', 'http://www.weeklybuddy.pierre-rainero.fr'];
+
+    /**
      * Service to deal with Json Web Token (create, validate and decode them)
      * @var JWTService 
      */
@@ -42,9 +48,29 @@ class Controller {
      * @return Response
      */
     protected function jsonResponse(array $body, int $status = 200): Response {
-        return Flight::response()
+        $response = Flight::response()
             ->status($status)
-            ->header('Content-Type', 'application/json; charset=utf-8')
-            ->write(json_encode($body));
+            ->header('Content-Type', 'application/json;charset=utf-8');
+
+        if(!empty($body)) {
+            $response->write(json_encode($body));
+        }
+
+        if(isset($_SERVER['HTTP_ORIGIN']) && in_array($_SERVER['HTTP_ORIGIN'], $this->dns_allowed)){
+            $header_origin = $_SERVER['HTTP_ORIGIN'];
+            $response->header('Access-Control-Allow-Origin', $header_origin);
+        }
+
+        return $response;
+    }
+
+    /**
+     * Create a valid preflight response
+     * @return Response
+     */
+    public function preflightRequest(): Response {
+        $response = $this->jsonResponse([]);
+        $response->header('Access-Control-Allow-Headers', 'Content-Type, x-requested-with');
+        return $response;
     }
 }
